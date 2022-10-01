@@ -8,7 +8,6 @@ export function getBooksAction(token,page,title,author, genre) {
     try {
       const response = await axios.get(`/books?page=${page}&title=${title}&author=${author}&genre=${genre}`);
       dispatch(complete(response.data));
-      console.log(response.data);
     } catch (err) {
       dispatch(error(err.response.data));
     }

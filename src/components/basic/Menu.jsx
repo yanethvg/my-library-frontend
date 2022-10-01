@@ -22,10 +22,10 @@ function Menu() {
           <img
             src="https://flowbite.com/docs/images/logo.svg"
             className="mr-3 h-6 sm:h-10"
-            alt="Flowbite Logo"
+            alt="My Library Logo"
           />
           <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
-            Flowbite
+           My Library
           </span>
         </NavLink>
         {auth && (
