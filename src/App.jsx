@@ -1,12 +1,16 @@
 import React from "react";
+import { BrowserRouter } from "react-router-dom";
+import Menu from "./components/basic/Menu";
+import { Routers } from "./Routers";
 
 function App() {
   return (
-    <div className="flex justify-center">
-      <h1 className="font-bold text-2xl text-blue-900">
-        React and Tailwind with Vitejs!
-      </h1>
-    </div>
+    <BrowserRouter>
+      <Menu />
+      <div className="container mx-auto">
+        <Routers />
+      </div>
+    </BrowserRouter>
   );
 }
 
