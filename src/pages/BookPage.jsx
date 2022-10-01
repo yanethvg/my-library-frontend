@@ -1,19 +1,44 @@
-import React from "react";
+import React, {useState, useEffect, useCallback} from "react";
+//redux
+import { useDispatch, useSelector } from "react-redux";
+import { getBooksAction } from "../actions/book/getBooksAction";
+//components
+import Books from "../components/book/Books";
 
 function BookPage() {
+  const dispatch = useDispatch();
+  // getting token
+  const auth = useSelector((state) => state.auth.access);
+  // manage pagination and search
+  const [page, setPage] = useState(1);
+  const [title, setTitle] = useState("");
+  const [author, setAuthor] = useState("");
+  const [genre, setGenre] = useState("");
+
+  const books = useSelector((state) => state.books.books);
+
+  const handleChangePage = useCallback((page) => {
+    setPage(page);
+  }, []);
+
+  const load =(page,title, author, genre) => {
+    dispatch(getBooksAction(auth.access_token, page, title, author, genre));
+  }
+
+  useEffect(() => {
+    load(page,title, author, genre);
+  }, [page, title, author, genre, auth.access_token]);
+
+
   return (
     <>
-      <div className="max-w-screen-lg bg-indigo-500 shadow-2xl rounded-lg mx-auto text-center py-12 mt-4">
-        <h2 className="text-3xl leading-9 font-bold tracking-tight text-white sm:text-4xl sm:leading-10">
+      <div>
+        <h1 className="text-4xl font-normal leading-normal mt-0 mb-2 text-pink-800 text-center my-6">
           Books
-        </h2>
-        <div className="mt-8 flex justify-center">
-          <div className="inline-flex rounded-md bg-white shadow">
-            <a href="#" className="text-gray-700 font-bold py-2 px-6">
-              Start
-            </a>
-          </div>
-        </div>
+        </h1>
+        <Books
+          books={books}
+        />
       </div>
     </>
   );

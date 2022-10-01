@@ -1,6 +1,5 @@
 import { START_LOGOUT, COMPLETE_LOGOUT, ERROR_LOGOUT } from "../../types/auth";
 import { Axios } from "../../config/Axios";
-import { API_URL } from "../../config";
 
 export function getLogout(token) {
   return async (dispatch) => {
