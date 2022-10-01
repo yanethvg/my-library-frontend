@@ -1,9 +1,9 @@
-import { API_URL } from "../config/api";
+import { API_URL } from "./index";
 import axios from "axios";
 
-function Axios(token) {
+function Axios(token,) {
   return axios.create({
-    baseURL: API_URL,
+    baseURL: `${API_URL}`,
     headers: {
       Accept: "application/json",
       Authorization: `Bearer ${token}`,
