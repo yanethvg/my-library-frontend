@@ -1,12 +1,19 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+  useTransition,
+  Suspense,
+} from "react";
 //redux
 import { useDispatch, useSelector } from "react-redux";
 import { getBooksAction } from "../actions/book/getBooksAction";
-import { getGenresAction} from "../actions/genre/getGenresAction";
-import {  borrowAction } from "../actions/book/borrowAction";
+import { getGenresAction } from "../actions/genre/getGenresAction";
+import { borrowAction } from "../actions/book/borrowAction";
 //components
 import Books from "../components/book/Books";
 import CustomPagination from "../components/basic/CustomPagination";
+import Loading from "../components/basic/Loading";
 
 function BookPage() {
   const dispatch = useDispatch();
@@ -17,6 +24,8 @@ function BookPage() {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [genre, setGenre] = useState("");
+
+  const [inTransition, startTransition] = useTransition();
 
   const books = useSelector((state) => state.books.books);
   const total = useSelector((state) => state.books.pages);
@@ -36,14 +45,15 @@ function BookPage() {
   };
 
   const handleBorrow = (id) => {
-    if(confirm("Are you sure you want to borrow this book?")){
+    if (confirm("Are you sure you want to borrow this book?")) {
       dispatch(borrowAction(auth.access_token, id));
     }
-    
   };
 
   useEffect(() => {
-    load(page, title, author, genre);
+    startTransition(() => {
+      load(page, title, author, genre);
+    });
     loadGenres();
   }, [page, title, author, genre, auth.access_token]);
 
@@ -55,9 +65,7 @@ function BookPage() {
         </h1>
         <div className="flex flex-wrap -mx-3 mb-6">
           <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-            <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-            >
+            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
               Title
             </label>
             <input
@@ -72,9 +80,7 @@ function BookPage() {
             </p> */}
           </div>
           <div className="w-full md:w-1/3 px-3">
-            <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-            >
+            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
               Author
             </label>
             <input
@@ -86,10 +92,8 @@ function BookPage() {
             />
           </div>
           <div className="w-full md:w-1/3 px-3">
-            <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-            >
-             Genre
+            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+              Genre
             </label>
             <div className="relative">
               <select
@@ -116,7 +120,22 @@ function BookPage() {
             </div>
           </div>
         </div>
-        <Books books={books} handleBorrow={handleBorrow}/>
+        {inTransition && !loading ? (
+          <div className="d-flex justify-content-center">
+            <Loading type={"spin"} color={"#0000ff"} />
+          </div>
+        ) : null}
+        {books.length > 0 ? (
+          <Suspense fallback={<Loading type={"spin"} color={"#0000ff"} />}>
+            <Books books={books} handleBorrow={handleBorrow} />
+          </Suspense>
+        ) : (
+          <div className="d-flex justify-content-center">
+            <h1 className="font-bold text-2xl text-blue-900 my-6 text-center">
+              No Books Found
+            </h1>
+          </div>
+        )}
         {total > 1 && loading == false && (
           <div className="d-flex justify-content-center">
             <CustomPagination
