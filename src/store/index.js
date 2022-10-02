@@ -2,9 +2,17 @@ import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import rootReducers from "../reducers";
 import { authenticate, isAuthenticated } from "./localStorage";
-import logger from 'redux-logger'
+import logger from 'redux-logger';
+import { ENV } from "../config";
 
-const middleware = [thunk, logger];
+
+let middleware = [thunk];
+
+if (ENV === "development") {
+  console.log("Development mode");
+  middleware.push(logger);
+}
+
 
 // verification auth
 const storageAuth = isAuthenticated();
@@ -16,6 +24,7 @@ const store = createStore(
     applyMiddleware(...middleware),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   )
+  
 );
 
 store.subscribe(() => {
