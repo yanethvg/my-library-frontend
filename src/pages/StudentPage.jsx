@@ -57,7 +57,7 @@ function StudentPage() {
         Students
       </h1>
 
-      <div className="flex flex-wrap -mx-3 mb-6">
+      <div className="flex flex-wrap mx-6  mb-6">
         <div className="w-full px-3 mb-6 md:mb-0">
           <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
             Search

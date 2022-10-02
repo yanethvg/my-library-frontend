@@ -58,7 +58,7 @@ function CreateUserPage() {
         Create User
       </h1>
       <form className="w-full ">
-        <div className="flex flex-wrap -mx-3 mb-6">
+        <div className="flex flex-wrap mx-3 mb-6">
           <div className="w-full ">
             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
               First Name
@@ -79,7 +79,7 @@ function CreateUserPage() {
             ) : null}
           </div>
         </div>
-        <div className="flex flex-wrap -mx-3 mb-6">
+        <div className="flex flex-wrap mx-3 mb-6">
           <div className="w-full">
             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
               Last Name
@@ -100,7 +100,7 @@ function CreateUserPage() {
             ) : null}
           </div>
         </div>
-        <div className="flex flex-wrap -mx-3 mb-6">
+        <div className="flex flex-wrap mx-3 mb-6">
           <div className="w-full ">
             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
               Email
@@ -121,7 +121,7 @@ function CreateUserPage() {
             ) : null}
           </div>
         </div>
-        <div className="flex flex-wrap -mx-3 mb-6">
+        <div className="flex flex-wrap mx-3 mb-6">
           <div className="w-full ">
             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
               Role
@@ -151,7 +151,7 @@ function CreateUserPage() {
             </div>
           </div>
         </div>
-        <div className="flex flex-wrap -mx-3 mb-6">
+        <div className="flex flex-wrap mx-3 mb-6">
           <div className="w-full ">
             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
               Password
@@ -172,7 +172,7 @@ function CreateUserPage() {
             ) : null}
           </div>
         </div>
-        <div className="flex flex-wrap -mx-3 mb-6">
+        <div className="flex flex-wrap mx-3 mb-6">
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             onClick={clickSubmit}
