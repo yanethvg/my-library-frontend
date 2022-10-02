@@ -4,6 +4,7 @@ import { routes } from "./../../Routers";
 //redux
 import { useDispatch, useSelector } from "react-redux";
 import { getLogout } from "../../actions/auth/logoutAction";
+import Logo from "../../assets/books.svg";
 
 function Menu() {
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ function Menu() {
       <div className="container flex flex-wrap justify-between items-center mx-auto">
         <NavLink to="/" className="flex items-center">
           <img
-            src="https://flowbite.com/docs/images/logo.svg"
+            src={Logo}
             className="mr-3 h-6 sm:h-10"
             alt="My Library Logo"
           />

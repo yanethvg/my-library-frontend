@@ -7,7 +7,7 @@ export function returnAction(token,book_id, user_id) {
     dispatch(start());
     const axios = Axios(token);
     try {
-      const response = await axios.post(`/books/${book_id}/${user_id}/return`);
+      const response = await axios.post(`/books/${book_id}/students/${user_id}/return`);
       dispatch(complete(response.data.book));
       notify(response.data.message, "success");
     } catch (err) {
