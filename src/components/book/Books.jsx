@@ -1,6 +1,6 @@
 import React from "react";
 
-const Books = ({ books, handleBorrow, permissions, mine }) => {
+const Books = ({ books, handleBorrow, permissions, mine, handleShow }) => {
   return (
     <div className="overflow-x-auto relative shadow-md sm:rounded-lg m-5">
       <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -15,9 +15,11 @@ const Books = ({ books, handleBorrow, permissions, mine }) => {
             <th scope="col" className="py-3 px-6">
               Genre
             </th>
-            <th scope="col" className="py-3 px-6">
-              Stock
-            </th>
+            {!mine && (
+              <th scope="col" className="py-3 px-6">
+                Stock
+              </th>
+            )}
             <th scope="col" className="py-3 px-6">
               Action
             </th>
@@ -37,9 +39,10 @@ const Books = ({ books, handleBorrow, permissions, mine }) => {
               </th>
               <td className="py-4 px-6">{book.author}</td>
               <td className="py-4 px-6">{book.genre.name}</td>
-              <td className="py-4 px-6">{book.stock}</td>
+              {!mine && <td className="py-4 px-6">{book.stock}</td>}
+
               <td className="py-4 px-6">
-                {permissions.includes("books.borrow") && !mine &&(
+                {permissions.includes("books.borrow") && !mine && (
                   <button
                     className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                     onClick={() => handleBorrow(book.id)}
@@ -53,7 +56,10 @@ const Books = ({ books, handleBorrow, permissions, mine }) => {
                   </button>
                 )}
                 {permissions.includes("books.show") && (
-                  <button className="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-6">
+                  <button
+                    className="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-6"
+                    onClick={() => handleShow(book.id)}
+                  >
                     Show
                   </button>
                 )}

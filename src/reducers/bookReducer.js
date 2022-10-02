@@ -5,6 +5,9 @@ import {
   START_BORROW_BOOK,
   COMPLETE_BORROW_BOOK,
   ERROR_BORROW_BOOK,
+  START_GET_BOOK,
+  COMPLETE_GET_BOOK,
+  ERROR_GET_BOOK,
 } from "../types/book";
 
 const initialState = {
@@ -13,6 +16,7 @@ const initialState = {
   loading: false,
   messageError: null,
   pages: null,
+  book: {},
 };
 
 export default function (state = initialState, action) {
@@ -49,9 +53,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         books: state.books.map((book) =>
-          book.id == action.payload.id
-            ?  action.payload
-            : book
+          book.id == action.payload.id ? action.payload : book
         ),
         error: null,
         loading: false,
@@ -59,6 +61,27 @@ export default function (state = initialState, action) {
     case ERROR_BORROW_BOOK:
       return {
         ...state,
+        error: null,
+        loading: false,
+        messageError: action.payload.message,
+      };
+    case START_GET_BOOK:
+      return {
+        ...state,
+        error: null,
+        loading: true,
+      };
+    case COMPLETE_GET_BOOK:
+      return {
+        ...state,
+        book: action.payload,
+        error: null,
+        loading: false,
+      };
+    case ERROR_GET_BOOK:
+      return {
+        ...state,
+        book: {},
         error: null,
         loading: false,
         messageError: action.payload.message,

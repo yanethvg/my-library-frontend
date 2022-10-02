@@ -5,6 +5,7 @@ import React, {
   useTransition,
   Suspense,
 } from "react";
+import { useNavigate } from "react-router-dom";
 //redux
 import { useDispatch, useSelector } from "react-redux";
 import { getBooksAction } from "../actions/book/getBooksAction";
@@ -20,7 +21,7 @@ function BookPage() {
   // getting token
   const auth = useSelector((state) => state.auth.access);
   const permissions = useSelector((state) => state.auth.access.permissions);
-  
+
   // manage pagination and search
   const [page, setPage] = useState(1);
   const [title, setTitle] = useState("");
@@ -51,6 +52,14 @@ function BookPage() {
       dispatch(borrowAction(auth.access_token, id));
     }
   };
+
+  const nav = useNavigate();
+
+  const handleShow = (id) => {
+    nav(`/books/${id}`);
+  };
+
+
 
   useEffect(() => {
     startTransition(() => {
@@ -129,7 +138,12 @@ function BookPage() {
         ) : null}
         {books.length > 0 ? (
           <Suspense fallback={<Loading type={"spin"} color={"#0000ff"} />}>
-            <Books books={books} handleBorrow={handleBorrow} permissions={permissions} />
+            <Books
+              books={books}
+              handleBorrow={handleBorrow}
+              permissions={permissions}
+              handleShow={handleShow}
+            />
           </Suspense>
         ) : (
           <div className="d-flex justify-content-center">
