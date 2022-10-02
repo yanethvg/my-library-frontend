@@ -58,139 +58,143 @@ function CreateBookPage() {
       <h1 className="font-bold text-2xl text-blue-900 my-6 text-center">
         Create Book
       </h1>
-      <form className="w-full ">
-        <div className="flex flex-wrap mx-3 mb-6">
-          <div className="w-full ">
-            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-              Title
-            </label>
-            <input
-              className={
-                error?.title
-                  ? "appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                  : "appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-              }
-              id="title"
-              type="text"
-              placeholder="Enter Title"
-              onChange={(e) => handleChange(e)}
-            />
-            {error && error?.title ? (
-              <p className="text-red-500 text-xs italic">{error.title}</p>
-            ) : null}
-          </div>
-        </div>
-        <div className="flex flex-wrap mx-3 mb-6">
-          <div className="w-full ">
-            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-              Author
-            </label>
-            <input
-              className={
-                error?.author
-                  ? "appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                  : "appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-              }
-              id="author"
-              type="text"
-              placeholder="Enter Author"
-              onChange={(e) => handleChange(e)}
-            />
-            {error && error?.author ? (
-              <p className="text-red-500 text-xs italic">{error.author}</p>
-            ) : null}
-          </div>
-        </div>
-        <div className="flex flex-wrap mx-3 mb-6">
-          <div className="w-full ">
-            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-              Genre
-            </label>
-            <div className="relative">
-              <select
+      <div className="max-w-screen-lg bg-white shadow-2xl rounded-lg mx-auto  py-12 mt-4">
+        <form className="w-full ">
+          <div className="flex flex-wrap mx-3 mb-6">
+            <div className="w-full ">
+              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                Title
+              </label>
+              <input
                 className={
+                  error?.title
+                    ? "appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                    : "appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                }
+                id="title"
+                type="text"
+                placeholder="Enter Title"
+                onChange={(e) => handleChange(e)}
+              />
+              {error && error?.title ? (
+                <p className="text-red-500 text-xs italic">{error.title}</p>
+              ) : null}
+            </div>
+          </div>
+          <div className="flex flex-wrap mx-3 mb-6">
+            <div className="w-full ">
+              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                Author
+              </label>
+              <input
+                className={
+                  error?.author
+                    ? "appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                    : "appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                }
+                id="author"
+                type="text"
+                placeholder="Enter Author"
+                onChange={(e) => handleChange(e)}
+              />
+              {error && error?.author ? (
+                <p className="text-red-500 text-xs italic">{error.author}</p>
+              ) : null}
+            </div>
+          </div>
+          <div className="flex flex-wrap mx-3 mb-6">
+            <div className="w-full ">
+              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                Genre
+              </label>
+              <div className="relative">
+                <select
+                  className={
                     error?.genre_id
                       ? "appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                       : "appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                   }
-                id="genre_id"
-                onChange={(e) => handleChange(e)}
-              >
-                <option value="">Select Genre</option>
-                {genres.map((genre) => (
-                  <option key={genre.id} value={genre.id}>
-                    {genre.name}
-                  </option>
-                ))}
-              </select>
-              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                <svg
-                  className="fill-current h-4 w-4"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
+                  id="genre_id"
+                  onChange={(e) => handleChange(e)}
                 >
-                  <path d="M10 12a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm0 2a4 4 0 1 1 0-8 4 4 0 0 1 0 8z" />
-                </svg>
+                  <option value="">Select Genre</option>
+                  {genres.map((genre) => (
+                    <option key={genre.id} value={genre.id}>
+                      {genre.name}
+                    </option>
+                  ))}
+                </select>
+                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                  <svg
+                    className="fill-current h-4 w-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M10 12a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm0 2a4 4 0 1 1 0-8 4 4 0 0 1 0 8z" />
+                  </svg>
+                </div>
+                {error && error?.genre_id ? (
+                  <p className="text-red-500 text-xs italic">
+                    {error.genre_id}
+                  </p>
+                ) : null}
               </div>
-              {
-                error && error?.genre_id ? (
-                    <p className="text-red-500 text-xs italic">{error.genre_id}</p>
-                ) : null
-              }
             </div>
           </div>
-        </div>
-        <div className="flex flex-wrap mx-3 mb-6">
-          <div className="w-full ">
-            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-              Year Published
-            </label>
-            <input
-             className={
-                error?.year_published
-                  ? "appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                  : "appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-              }
-              type="text"
-              id="year_published"
-              placeholder="Enter Year Published"
-              onChange={(e) => handleChange(e)}
-            />
-            {error && error?.year_published ? (
-              <p className="text-red-500 text-xs italic">{error.year_published}</p>
-            ) : null}
+          <div className="flex flex-wrap mx-3 mb-6">
+            <div className="w-full ">
+              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                Year Published
+              </label>
+              <input
+                className={
+                  error?.year_published
+                    ? "appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                    : "appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                }
+                type="text"
+                id="year_published"
+                placeholder="Enter Year Published"
+                onChange={(e) => handleChange(e)}
+              />
+              {error && error?.year_published ? (
+                <p className="text-red-500 text-xs italic">
+                  {error.year_published}
+                </p>
+              ) : null}
+            </div>
           </div>
-        </div>
-        <div className="flex flex-wrap mx-3 mb-6">
-          <div className="w-full ">
-            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-              Stock
-            </label>
-            <input
-             className={
-                error?.stock
-                  ? "appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                  : "appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-              }
-              type="number"
-              id="stock"
-              onChange={(e) => handleChange(e)}
-            />
-            {error && error?.stock ? (
-              <p className="text-red-500 text-xs italic">{error.stock}</p>
-            ) : null}
+          <div className="flex flex-wrap mx-3 mb-6">
+            <div className="w-full ">
+              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                Stock
+              </label>
+              <input
+                className={
+                  error?.stock
+                    ? "appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                    : "appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                }
+                type="number"
+                id="stock"
+                onChange={(e) => handleChange(e)}
+              />
+              {error && error?.stock ? (
+                <p className="text-red-500 text-xs italic">{error.stock}</p>
+              ) : null}
+            </div>
           </div>
-        </div>
 
-        <div className="flex flex-wrap mx-3 mb-6">
-          <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            onClick={clickSubmit}
-          >
-            Save
-          </button>
-        </div>
-      </form>
+          <div className="flex flex-wrap mx-3 mb-6">
+            <button
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              onClick={clickSubmit}
+            >
+              Save
+            </button>
+          </div>
+        </form>
+      </div>
     </>
   );
 }
