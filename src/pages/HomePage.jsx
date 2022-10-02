@@ -10,7 +10,12 @@ function HomePage() {
           Welcome to the Library
         </h2>
         <div className="mt-8 flex justify-center">
-          <p>Have a Good Day {auth.user.full_name}</p>
+          <p>Have a Good Day 
+            {auth? 
+              <span className="text-indigo-200"> {auth.user.full_name}</span>
+              :
+              <span className="text-indigo-200"> Guest</span>
+          }</p>
          
         </div>
       </div>
