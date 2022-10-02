@@ -1,18 +1,18 @@
 import React from "react";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, HashRouter } from "react-router-dom";
 import Menu from "./components/basic/Menu";
 import { Routers } from "./Routers";
 import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Menu />
       <ToastContainer autoClose={8000} />
       <div className="container mx-auto">
         <Routers />
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 

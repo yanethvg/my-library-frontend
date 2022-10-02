@@ -15,7 +15,6 @@ import {
         dispatch(complete(response.data));
         notify("Created User Successfully", "success");
       } catch (err) {
-        console.log(err.response.data);
         dispatch(error(err.response.data));
         notify(err.response.data.message, "error");
       }
