@@ -6,8 +6,13 @@ import { notify } from "../../components/basic/Notify";
 export function getLogin(user) {
   return async (dispatch) => {
     dispatch(start());
+    
     try {
-      const response = await axios.post(`${API_URL}/login`, user);
+      const response = await axios.post(`${API_URL}/login`, user, {
+        headers: {
+          Accept: "application/json",
+        },
+      });
       dispatch(complete(response.data));
     } catch (err) {
       // if (err.response.data.errors) {
