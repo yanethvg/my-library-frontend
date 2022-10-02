@@ -8,7 +8,7 @@ import React, {
 import { useNavigate } from "react-router-dom";
 //redux
 import { useDispatch, useSelector } from "react-redux";
-import { getBooksAction } from "../actions/book/getBooksAction";
+import { getMyBooksAction } from "../actions/student/getMyBooksAction";
 import { getGenresAction } from "../actions/genre/getGenresAction";
 import { borrowAction } from "../actions/book/borrowAction";
 //components
@@ -16,7 +16,7 @@ import Books from "../components/book/Books";
 import CustomPagination from "../components/basic/CustomPagination";
 import Loading from "../components/basic/Loading";
 
-function BookPage() {
+function StudentBookPage() {
   const dispatch = useDispatch();
   // getting token
   const auth = useSelector((state) => state.auth.access);
@@ -40,7 +40,7 @@ function BookPage() {
   }, []);
 
   const load = (page, title, author, genre) => {
-    dispatch(getBooksAction(auth.access_token, page, title, author, genre));
+    dispatch(getMyBooksAction(auth.access_token, page, title, author, genre));
   };
 
   const loadGenres = () => {
@@ -70,7 +70,7 @@ function BookPage() {
     <>
       <div>
         <h1 className="font-bold text-2xl text-blue-900 my-6 text-center">
-          Books
+          My Books
         </h1>
         <div className="flex flex-wrap -mx-3 mb-6">
           <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
@@ -84,9 +84,6 @@ function BookPage() {
               placeholder="Enter Title"
               onChange={(e) => setTitle(e.target.value)}
             />
-            {/* <p class="text-red-500 text-xs italic">
-              Please fill out this field.
-            </p> */}
           </div>
           <div className="w-full md:w-1/3 px-3">
             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
@@ -140,8 +137,8 @@ function BookPage() {
               books={books}
               handleBorrow={handleBorrow}
               permissions={permissions}
+              mine={true}
               handleShow={handleShow}
-              returned={false}
             />
           </Suspense>
         ) : (
@@ -165,4 +162,4 @@ function BookPage() {
   );
 }
 
-export default BookPage;
+export default StudentBookPage;
