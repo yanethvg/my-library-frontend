@@ -10,6 +10,7 @@ import StudentPage from "./pages/StudentPage";
 import CheckinPage from "./pages/CheckinPage";
 import CreateBookPage from "./pages/CreateBookPage";
 import CreateUserPage from "./pages/CreateUserPage";
+import UserPage from "./pages/UserPage";
 
 const routes = [
   {
@@ -41,7 +42,13 @@ const routes = [
     element: <CreateUserPage />,
     text: "Create User",
     permission: "users.store",
-  }
+  },
+  {
+    path: "/users",
+    element: <UserPage />,
+    text: "Users",
+    permission: "users.index",
+  },
 ];
 
 const routesChild = [

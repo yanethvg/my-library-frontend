@@ -5,39 +5,35 @@ import React, {
   useTransition,
   Suspense,
 } from "react";
-import { useNavigate } from "react-router-dom";
-
 //redux
 import { useDispatch, useSelector } from "react-redux";
-import { getStudentsAction } from "../actions/student/getStudentsAction";
-
+import { getUsersAction } from "../actions/user/getUsersAction";
 //components
-import Students from "../components/student/Students";
+import Users from "../components/user/Users";
 import CustomPagination from "../components/basic/CustomPagination";
 import Loading from "../components/basic/Loading";
 
-function StudentPage() {
+function UserPage() {
   const dispatch = useDispatch();
   // getting token
   const auth = useSelector((state) => state.auth.access);
-  const permissions = useSelector((state) => state.auth.access.permissions);
-
   // manage pagination and search
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
 
   const [inTransition, startTransition] = useTransition();
 
-  const students = useSelector((state) => state.students.students);
-  const total = useSelector((state) => state.students.pages);
-  const loading = useSelector((state) => state.students.loading);
+  const users = useSelector((state) => state.users.users);
+  const total = useSelector((state) => state.users.pages);
+  const loading = useSelector((state) => state.users.loading);
 
   const handleChangePage = useCallback((page) => {
     setPage(page);
   }, []);
 
+
   const load = (page, search) => {
-    dispatch(getStudentsAction(auth.access_token, page, search));
+    dispatch(getUsersAction(auth.access_token, page, search));
   };
 
   useEffect(() => {
@@ -46,15 +42,10 @@ function StudentPage() {
     });
   }, [page, search, auth.access_token]);
 
-  const nav = useNavigate();
-
-  const handleShow = (id) => {
-    nav(`/books-student/${id}`);
-  };
   return (
     <>
       <h1 className="font-bold text-2xl text-blue-900 my-6 text-center">
-        Students
+        User
       </h1>
 
       <div className="flex flex-wrap -mx-3 mb-6">
@@ -71,20 +62,19 @@ function StudentPage() {
           />
         </div>
       </div>
-
       {inTransition && !loading ? (
         <div className="d-flex justify-content-center">
           <Loading type={"spin"} color={"#0000ff"} />
         </div>
       ) : null}
-      {students.length > 0 ? (
+      {users.length > 0 ? (
         <Suspense fallback={<Loading type={"spin"} color={"#0000ff"} />}>
-          <Students students={students} handleShow={handleShow} />
+          <Users users={users} />
         </Suspense>
       ) : (
         <div className="d-flex justify-content-center">
           <h1 className="font-bold text-2xl text-blue-900 my-6 text-center">
-            No Students Found
+            No Users Found
           </h1>
         </div>
       )}
@@ -101,4 +91,4 @@ function StudentPage() {
   );
 }
 
-export default StudentPage;
+export default UserPage;
