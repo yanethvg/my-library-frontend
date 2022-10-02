@@ -24,7 +24,6 @@ export default function CustomPagination({ total, current, onChangePage }) {
         {Array.from({ length: total }, (_, i) => i + 1).map((page) => (
           <li key={page}>
             <a
-              href="#"
               className="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
               onClick={() => onChangePage(page)}
             >
@@ -35,7 +34,6 @@ export default function CustomPagination({ total, current, onChangePage }) {
         {current < total && (
           <li>
             <a
-              href="#"
               className="block py-2 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
               onClick={() => onChangePage(current + 1)}
             >
