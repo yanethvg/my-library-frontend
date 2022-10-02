@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
-import LoginReducer from "./LoginReducer";
-import BookReducer from "./BookReducer";
-import GenreReducer from "./GenreReducer";
+import LoginReducer from "./loginReducer";
+import BookReducer from "./bookReducer";
+import GenreReducer from "./genreReducer";
 import StudentReducer from "./studentReducer";
 import roleReducer from "./roleReducer";
-import UserReducer from "./UserReducer";
+import UserReducer from "./userReducer";
 
 export default combineReducers({
   auth: LoginReducer,
