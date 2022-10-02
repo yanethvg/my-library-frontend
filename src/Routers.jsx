@@ -6,6 +6,8 @@ import LoginPage from "./pages/LoginPage";
 import BookPage from "./pages/BookPage";
 import StudentBookPage from "./pages/StudentBookPage";
 import ShowBookPage from "./pages/ShowBookPage";
+import StudentPage from "./pages/StudentPage";
+import CheckinPage from "./pages/CheckinPage";
 
 const routes = [
   {
@@ -20,6 +22,12 @@ const routes = [
     text: "My Books",
     permission: "students.books",
   },
+  {
+    path: "/students",
+    element: <StudentPage />,
+    text: "Students",
+    permission: "students.index",
+  },
 ];
 
 const routesChild = [
@@ -29,6 +37,12 @@ const routesChild = [
     text: "Book",
     permission: "books.show",
   },
+  {
+    path: "/books-student/:id",
+    element: <CheckinPage  />,
+    text: "Student Books",
+    permission: "books.students",
+  }
 ];
 
 function Routers() {

@@ -5,18 +5,19 @@ import React, {
   useTransition,
   Suspense,
 } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 //redux
 import { useDispatch, useSelector } from "react-redux";
-import { getBooksAction } from "../actions/book/getBooksAction";
+import { getBooksStudentAction } from "../actions/student/getBooksStudentAction";
 import { getGenresAction } from "../actions/genre/getGenresAction";
-import { borrowAction } from "../actions/book/borrowAction";
+import { returnAction } from "../actions/book/returnAction";
 //components
 import Books from "../components/book/Books";
 import CustomPagination from "../components/basic/CustomPagination";
 import Loading from "../components/basic/Loading";
 
-function BookPage() {
+function CheckinPage() {
+  let { id } = useParams();
   const dispatch = useDispatch();
   // getting token
   const auth = useSelector((state) => state.auth.access);
@@ -40,23 +41,20 @@ function BookPage() {
   }, []);
 
   const load = (page, title, author, genre) => {
-    dispatch(getBooksAction(auth.access_token, page, title, author, genre));
+    dispatch(
+      getBooksStudentAction(auth.access_token, id, page, title, author, genre)
+    );
   };
 
   const loadGenres = () => {
     dispatch(getGenresAction(auth.access_token));
   };
 
-  const handleBorrow = (id) => {
-    if (confirm("Are you sure you want to borrow this book?")) {
-      dispatch(borrowAction(auth.access_token, id));
+  const handleReturn = (book_id) => {
+    if (confirm("Are you sure you want to return this book?")) {
+      const user_id = id;
+      dispatch(returnAction(auth.access_token, book_id, user_id));
     }
-  };
-
-  const nav = useNavigate();
-
-  const handleShow = (id) => {
-    nav(`/books/${id}`);
   };
 
   useEffect(() => {
@@ -70,7 +68,7 @@ function BookPage() {
     <>
       <div>
         <h1 className="font-bold text-2xl text-blue-900 my-6 text-center">
-          Books
+          My Books
         </h1>
         <div className="flex flex-wrap -mx-3 mb-6">
           <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
@@ -84,9 +82,6 @@ function BookPage() {
               placeholder="Enter Title"
               onChange={(e) => setTitle(e.target.value)}
             />
-            {/* <p class="text-red-500 text-xs italic">
-              Please fill out this field.
-            </p> */}
           </div>
           <div className="w-full md:w-1/3 px-3">
             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
@@ -138,10 +133,10 @@ function BookPage() {
           <Suspense fallback={<Loading type={"spin"} color={"#0000ff"} />}>
             <Books
               books={books}
-              handleBorrow={handleBorrow}
               permissions={permissions}
-              handleShow={handleShow}
-              returned={false}
+              mine={false}
+              handleReturn={handleReturn}
+              returned={true}
             />
           </Suspense>
         ) : (
@@ -165,4 +160,4 @@ function BookPage() {
   );
 }
 
-export default BookPage;
+export default CheckinPage;

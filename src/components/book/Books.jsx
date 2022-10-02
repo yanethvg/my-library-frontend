@@ -1,6 +1,6 @@
 import React from "react";
 
-const Books = ({ books, handleBorrow, permissions, mine, handleShow }) => {
+const Books = ({ books, handleBorrow, permissions, mine, handleShow, handleReturn,returned  }) => {
   return (
     <div className="overflow-x-auto relative shadow-md sm:rounded-lg m-5">
       <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -44,20 +44,22 @@ const Books = ({ books, handleBorrow, permissions, mine, handleShow }) => {
               <td className="py-4 px-6">
                 {permissions.includes("books.borrow") && !mine && (
                   <button
-                    className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                    className="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-2"
                     onClick={() => handleBorrow(book.id)}
                   >
                     Checkout
                   </button>
                 )}
-                {permissions.includes("books.return") && (
-                  <button className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                {permissions.includes("books.return") && returned &&(
+                  <button className="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-2"
+                  onClick={() => handleReturn(book.id)}
+                  >
                     Checkin
                   </button>
                 )}
                 {permissions.includes("books.show") && (
                   <button
-                    className="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-6"
+                    className="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-2"
                     onClick={() => handleShow(book.id)}
                   >
                     Show

@@ -1,35 +1,37 @@
 import {
-  START_GET_GENRES,
-  COMPLETE_GET_GENRES,
-  ERROR_GET_GENRES,
-} from "../types/genre";
+  START_GET_STUDENTS,
+  COMPLETE_GET_STUDENTS,
+  ERROR_GET_STUDENTS,
+} from "../types/student";
 
 const initialState = {
-  genres: [],
+  students: [],
   error: null,
   loading: false,
   messageError: null,
+  pages: null,
 };
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case START_GET_GENRES:
+    case START_GET_STUDENTS:
       return {
         ...state,
         error: null,
         loading: true,
       };
-    case COMPLETE_GET_GENRES:
+    case COMPLETE_GET_STUDENTS:
       return {
         ...state,
-        genres: action.payload.data,
+        students: action.payload.data,
         error: null,
         loading: false,
+        pages: action.payload.meta.last_page,
       };
-    case ERROR_GET_GENRES:
+    case ERROR_GET_STUDENTS:
       return {
         ...state,
-        genres: [],
+        students: [],
         error: null,
         loading: false,
         messageError: action.payload,

@@ -8,6 +8,9 @@ import {
   START_GET_BOOK,
   COMPLETE_GET_BOOK,
   ERROR_GET_BOOK,
+  START_RETURN_BOOK,
+  COMPLETE_RETURN_BOOK,
+  ERROR_RETURN_BOOK,
 } from "../types/book";
 
 const initialState = {
@@ -82,6 +85,28 @@ export default function (state = initialState, action) {
       return {
         ...state,
         book: {},
+        error: null,
+        loading: false,
+        messageError: action.payload.message,
+      };
+    case START_RETURN_BOOK:
+      return {
+        ...state,
+        error: null,
+        loading: true,
+      };
+    case COMPLETE_RETURN_BOOK:
+      return {
+        ...state,
+        books: state.books.filter(
+          (book) => book.id !== action.payload.id
+        ),
+        error: null,
+        loading: false,
+      };
+    case ERROR_RETURN_BOOK:
+      return {
+        ...state,
         error: null,
         loading: false,
         messageError: action.payload.message,
