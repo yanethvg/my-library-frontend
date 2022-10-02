@@ -15,7 +15,6 @@ export function storeBookAction(token, book) {
       dispatch(complete(response.data));
       notify("Created Book Successfully", "success");
     } catch (err) {
-      console.log(err);
       dispatch(error(err.response.data));
       notify(err.response.data.message, "error");
     }

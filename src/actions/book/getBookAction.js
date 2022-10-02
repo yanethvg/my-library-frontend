@@ -7,7 +7,6 @@ export function getBookAction(token,id) {
     const axios = Axios(token);
     try {
       const response = await axios.get(`/books/${id}`);
-      console.log(response.data);
       dispatch(complete(response.data.data));
     } catch (err) {
       dispatch(error(err.response.data));
