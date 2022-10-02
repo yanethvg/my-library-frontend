@@ -1,6 +1,6 @@
 import React from "react";
 
-const Books = ({ books }) => {
+const Books = ({ books, handleBorrow }) => {
   return (
     <div className="overflow-x-auto relative shadow-md sm:rounded-lg m-5">
       <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -21,6 +21,9 @@ const Books = ({ books }) => {
             <th scope="col" className="py-3 px-6">
               Action
             </th>
+            <th scope="col" className="py-3 px-6">
+            ID
+          </th>
           </tr>
         </thead>
         <tbody>
@@ -39,7 +42,12 @@ const Books = ({ books }) => {
               <td className="py-4 px-6">{book.genre.name}</td>
               <td className="py-4 px-6">{book.stock}</td>
               <td className="py-4 px-6">
-                <button>Hola</button>
+                <button className="font-medium text-blue-600 dark:text-blue-500 hover:underline" onClick={() => handleBorrow(book.id)}>
+                  Checkout
+                </button>
+              </td>
+              <td className="py-4 px-6">
+                {book.id}
               </td>
             </tr>
           ))}

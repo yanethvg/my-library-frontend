@@ -3,6 +3,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getBooksAction } from "../actions/book/getBooksAction";
 import { getGenresAction} from "../actions/genre/getGenresAction";
+import {  borrowAction } from "../actions/book/borrowAction";
 //components
 import Books from "../components/book/Books";
 import CustomPagination from "../components/basic/CustomPagination";
@@ -32,6 +33,13 @@ function BookPage() {
 
   const loadGenres = () => {
     dispatch(getGenresAction(auth.access_token));
+  };
+
+  const handleBorrow = (id) => {
+    if(confirm("Are you sure you want to borrow this book?")){
+      dispatch(borrowAction(auth.access_token, id));
+    }
+    
   };
 
   useEffect(() => {
@@ -108,7 +116,7 @@ function BookPage() {
             </div>
           </div>
         </div>
-        <Books books={books} />
+        <Books books={books} handleBorrow={handleBorrow}/>
         {total > 1 && loading == false && (
           <div className="d-flex justify-content-center">
             <CustomPagination
