@@ -1,6 +1,7 @@
 import { START_LOGIN, COMPLETE_LOGIN, ERROR_LOGIN } from "../../types/auth";
 import axios from "axios";
 import { API_URL } from "../../config";
+import { notify } from "../../components/basic/Notify";
 
 export function getLogin(user) {
   return async (dispatch) => {
@@ -9,6 +10,10 @@ export function getLogin(user) {
       const response = await axios.post(`${API_URL}/login`, user);
       dispatch(complete(response.data));
     } catch (err) {
+      // if (err.response.data.errors) {
+      //   dispatch(error(err.response.data));
+      // } 
+      notify(err.response.data.message, 'error');
       dispatch(error(err.response.data));
     }
   };

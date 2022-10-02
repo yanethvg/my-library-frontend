@@ -10,11 +10,7 @@ function ShowBookPage() {
   const dispatch = useDispatch();
   // getting token
   const books = useSelector((state) => state.books.books);
-
-
- let book= books.find((book) => book.id == id);
-
-
+  let book = books.find((book) => book.id == id);
 
   return (
     <>

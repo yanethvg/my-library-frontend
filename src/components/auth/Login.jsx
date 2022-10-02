@@ -17,33 +17,35 @@ const Login = (setEmail, setPassword, clickSubmit, error) => {
               <div className="mb-6">
                 <input
                   type="text"
-                  className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                  className={
+                    error?.errors?.email
+                      ? "border-red-500 border-2 rounded-lg w-full py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent"
+                      : "border-2 rounded-lg w-full py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent"
+                  }
                   placeholder="Email address"
                   onChange={(e) => setEmail(e.target.value)}
                 />
-                {error && error.errors.email ? (
-                  <div
-                    className="bg-red-100 rounded-lg py-5 px-6 mb-4 text-base text-red-700 mb-3 my-1"
-                    role="alert"
-                  >
-                    {error.errors.email}
-                  </div>
+                {error?.errors && error.errors.email ? (
+                   <p className="text-red-500 text-xs italic">
+                   {error.errors.email}
+                 </p>
                 ) : null}
               </div>
               <div className="mb-6">
                 <input
                   type="password"
-                  className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                  className={
+                    error?.errors?.password
+                      ? "border-red-500 border-2 rounded-lg w-full py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent"
+                      : "border-2 rounded-lg w-full py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent"
+                  }
                   placeholder="Password"
                   onChange={(e) => setPassword(e.target.value)}
                 />
-                 {error && error.errors.password ? (
-                  <div
-                    className="bg-red-100 rounded-lg py-5 px-6 mb-4 text-base text-red-700 mb-3 my-1"
-                    role="alert"
-                  >
+                {error?.errors && error.errors.password ? (
+                  <p className="text-red-500 text-xs italic">
                     {error.errors.password}
-                  </div>
+                  </p>
                 ) : null}
               </div>
               <button
