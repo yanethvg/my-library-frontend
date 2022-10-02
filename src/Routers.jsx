@@ -11,6 +11,7 @@ import CheckinPage from "./pages/CheckinPage";
 import CreateBookPage from "./pages/CreateBookPage";
 import CreateUserPage from "./pages/CreateUserPage";
 import UserPage from "./pages/UserPage";
+import PageNotFound from "./pages/PageNotFound";
 
 const routes = [
   {
@@ -95,6 +96,7 @@ function Routers() {
           </Route>
         );
       })}
+      <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
 }
