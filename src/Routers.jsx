@@ -8,6 +8,7 @@ import StudentBookPage from "./pages/StudentBookPage";
 import ShowBookPage from "./pages/ShowBookPage";
 import StudentPage from "./pages/StudentPage";
 import CheckinPage from "./pages/CheckinPage";
+import CreateBookPage from "./pages/CreateBookPage";
 
 const routes = [
   {
@@ -27,6 +28,12 @@ const routes = [
     element: <StudentPage />,
     text: "Students",
     permission: "students.index",
+  },
+  {
+    path: "/create-book",
+    element: <CreateBookPage />,
+    text: "Create Book",
+    permission: "books.store",
   },
 ];
 

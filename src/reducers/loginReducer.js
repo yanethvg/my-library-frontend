@@ -31,7 +31,7 @@ import {
       case ERROR_LOGIN:
         return {
           ...state,
-          error: action.payload,
+          error: action.payload.errors,
           redirectToRefer: false,
           access:undefined
         };

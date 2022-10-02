@@ -18,16 +18,16 @@ const Login = (setEmail, setPassword, clickSubmit, error) => {
                 <input
                   type="text"
                   className={
-                    error?.errors?.email
+                    error?.email
                       ? "border-red-500 border-2 rounded-lg w-full py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent"
                       : "border-2 rounded-lg w-full py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent"
                   }
                   placeholder="Email address"
                   onChange={(e) => setEmail(e.target.value)}
                 />
-                {error?.errors && error.errors.email ? (
+                {error && error.email ? (
                    <p className="text-red-500 text-xs italic">
-                   {error.errors.email}
+                   {error.email}
                  </p>
                 ) : null}
               </div>
@@ -35,16 +35,16 @@ const Login = (setEmail, setPassword, clickSubmit, error) => {
                 <input
                   type="password"
                   className={
-                    error?.errors?.password
+                    error?.password
                       ? "border-red-500 border-2 rounded-lg w-full py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent"
                       : "border-2 rounded-lg w-full py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent"
                   }
                   placeholder="Password"
                   onChange={(e) => setPassword(e.target.value)}
                 />
-                {error?.errors && error.errors.password ? (
+                {error && error.password ? (
                   <p className="text-red-500 text-xs italic">
-                    {error.errors.password}
+                    {error.password}
                   </p>
                 ) : null}
               </div>

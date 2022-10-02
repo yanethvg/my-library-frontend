@@ -11,6 +11,9 @@ import {
   START_RETURN_BOOK,
   COMPLETE_RETURN_BOOK,
   ERROR_RETURN_BOOK,
+  START_CREATE_BOOK,
+  COMPLETE_CREATE_BOOK,
+  ERROR_CREATE_BOOK,
 } from "../types/book";
 
 const initialState = {
@@ -98,9 +101,7 @@ export default function (state = initialState, action) {
     case COMPLETE_RETURN_BOOK:
       return {
         ...state,
-        books: state.books.filter(
-          (book) => book.id !== action.payload.id
-        ),
+        books: state.books.filter((book) => book.id !== action.payload.id),
         error: null,
         loading: false,
       };
@@ -108,6 +109,26 @@ export default function (state = initialState, action) {
       return {
         ...state,
         error: null,
+        loading: false,
+        messageError: action.payload.message,
+      };
+    case START_CREATE_BOOK:
+      return {
+        ...state,
+        error: null,
+        loading: true,
+      };
+    case COMPLETE_CREATE_BOOK:
+      return {
+        ...state,
+        books: [action.payload.data,...state.books],
+        error: null,
+        loading: false,
+      };
+    case ERROR_CREATE_BOOK:
+      return {
+        ...state,
+        error: action.payload.errors,
         loading: false,
         messageError: action.payload.message,
       };
