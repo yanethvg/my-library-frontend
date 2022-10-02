@@ -4,6 +4,7 @@ import PrivateRoute from "./components/basic/PrivateRoute";
 import HomePage from "./pages/HomePage";
 import LoginPage from './pages/LoginPage';
 import BookPage from './pages/BookPage';
+import StudentBookPage from "./pages/StudentBookPage";
 
 const routes = [
   {
@@ -12,6 +13,12 @@ const routes = [
     text: 'Books',
     permission: "books.index",
   },
+  {
+    path: "/my-books",
+    element: <StudentBookPage />,
+    text: 'My Books',
+    permission: "students.books"
+  }
 ];
 
 function Routers() {

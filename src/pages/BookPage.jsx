@@ -19,6 +19,8 @@ function BookPage() {
   const dispatch = useDispatch();
   // getting token
   const auth = useSelector((state) => state.auth.access);
+  const permissions = useSelector((state) => state.auth.access.permissions);
+  
   // manage pagination and search
   const [page, setPage] = useState(1);
   const [title, setTitle] = useState("");
@@ -127,7 +129,7 @@ function BookPage() {
         ) : null}
         {books.length > 0 ? (
           <Suspense fallback={<Loading type={"spin"} color={"#0000ff"} />}>
-            <Books books={books} handleBorrow={handleBorrow} />
+            <Books books={books} handleBorrow={handleBorrow} permissions={permissions} />
           </Suspense>
         ) : (
           <div className="d-flex justify-content-center">
